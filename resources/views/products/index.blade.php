@@ -33,7 +33,9 @@
 
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                @can('product-create')
                 <a class="btn btn-success btn-sm" href="{{ route('products.create') }}"> <i class="fa fa-plus"></i> Create New Product</a>
+                @endcan
             </div>
 
             <table class="table table-bordered table-striped mt-4">
@@ -63,12 +65,15 @@
                         <td>
                             <form action="{{ route('products.destroy', $product->id) }}" method="POST">
                                 <a class="btn btn-info btn-sm" href="{{ route('products.show', $product->id) }}"><i class="fa-solid fa-list"></i> Show</a>
+                                @can('product-edit')
                                 <a class="btn btn-primary btn-sm" href="{{ route('products.edit', $product->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                @endcan
 
                                 @csrf
                                 @method('DELETE')
-
+                                @can('product-delete')
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</button>
+                                @endcan
                             </form>
                         </td>
                     </tr>
