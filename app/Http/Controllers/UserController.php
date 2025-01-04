@@ -67,7 +67,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
-        $input = $request->validated();
+        $input = $request->all();
         $input['password'] = Hash::make($input['password']);
 
         $user = User::create($input);
