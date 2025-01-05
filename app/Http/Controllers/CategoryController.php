@@ -33,7 +33,7 @@ class CategoryController extends Controller
     {
         $categories = Category::latest()->paginate(5);
 
-        return view('categories.index',compact('categories'))
+        return view('categories.index', compact('categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -70,7 +70,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category): View
     {
-        return view('categories.show',compact('category'));
+        return view('categories.show', compact('category'));
     }
 
     /**
@@ -81,7 +81,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category): View
     {
-        return view('categories.edit',compact('category'));
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -111,6 +111,6 @@ class CategoryController extends Controller
         $category->delete();
 
         return redirect()->route('categories.index')
-            ->with('success','Category deleted successfully.');
+            ->with('success', 'Category deleted successfully.');
     }
 }

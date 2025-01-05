@@ -15,24 +15,17 @@
     </div>
 
    <form action="{{ route('users.index') }}" method="GET" class="mb-3">
-        <div class="row">
-            <div class="col-md-3">
+        <div class="input-group">
                 <input type="text" name="name" class="form-control" placeholder="Search by name" value="{{ request()->input('name') }}">
-            </div>
-            <div class="col-md-3">
                 <input type="text" name="email" class="form-control" placeholder="Search by email" value="{{ request()->input('email') }}">
-            </div>
-            <div class="col-md-3">
                 <select name="role" class="form-select">
                     <option value="">-- Search Role --</option>
                     @foreach($roles as $role)
                         <option value="{{ $role }}" {{ request()->input('role') == $role ? 'selected' : '' }}>{{ $role }}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="col-md-3">
+
                 <button type="submit" class="btn btn-primary">Search</button>
-            </div>
         </div>
     </form>
 

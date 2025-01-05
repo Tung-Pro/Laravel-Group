@@ -51,7 +51,7 @@ class Product extends Model
     {
         if (!empty($categoryName)) {
             return $query->whereHas('category', function ($query) use ($categoryName) {
-                $query->where('name', 'like', '%' . $categoryName . '%');
+                $query->where('name', 'like',  $categoryName );
             });
         }
 

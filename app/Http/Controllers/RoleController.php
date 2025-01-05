@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Http\Request;
@@ -35,8 +34,8 @@ class RoleController extends Controller
      */
     public function index(Request $request): View
     {
-        $roles = Role::orderBy('id','DESC')->paginate(5);
-        return view('roles.index',compact('roles'))
+        $roles = Role::orderBy('id', 'DESC')->paginate(5);
+        return view('roles.index', compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -48,7 +47,7 @@ class RoleController extends Controller
     public function create(): View
     {
         $permission = Permission::get();
-        return view('roles.create',compact('permission'));
+        return view('roles.create', compact('permission'));
     }
 
     /**
@@ -60,7 +59,9 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request): RedirectResponse
     {
         $permissionsID = array_map(
-            function($value) { return (int)$value; },
+            function ($value) {
+                return (int)$value;
+            },
             $request->input('permission')
         );
 
@@ -80,11 +81,11 @@ class RoleController extends Controller
     public function show($id): View
     {
         $role = Role::find($id);
-        $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
-            ->where("role_has_permissions.role_id",$id)
+        $rolePermissions = Permission::join("role_has_permissions", "role_has_permissions.permission_id", "=", "permissions.id")
+            ->where("role_has_permissions.role_id", $id)
             ->get();
 
-        return view('roles.show',compact('role','rolePermissions'));
+        return view('roles.show', compact('role', 'rolePermissions'));
     }
 
     /**
@@ -97,11 +98,11 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         $permission = Permission::get();
-        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
-            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
+            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
             ->all();
 
-        return view('roles.edit',compact('role','permission','rolePermissions'));
+        return view('roles.edit', compact('role', 'permission', 'rolePermissions'));
     }
 
     /**
@@ -118,7 +119,9 @@ class RoleController extends Controller
         $role->save();
 
         $permissionsID = array_map(
-            function($value) { return (int)$value; },
+            function ($value) {
+                return (int)$value;
+            },
             $request->input('permission')
         );
 
@@ -136,8 +139,8 @@ class RoleController extends Controller
      */
     public function destroy($id): RedirectResponse
     {
-        DB::table("roles")->where('id',$id)->delete();
+        DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('roles.index')
-            ->with('success','Role deleted successfully');
+            ->with('success', 'Role deleted successfully');
     }
 }

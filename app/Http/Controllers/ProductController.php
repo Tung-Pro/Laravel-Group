@@ -91,7 +91,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
-        return view('products.show',compact('product'));
+        return view('products.show', compact('product'));
     }
 
     /**
@@ -144,8 +144,6 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')
-            ->with('success','Product deleted successfully');
+            ->with('success', 'Product deleted successfully');
     }
-
-
 }
