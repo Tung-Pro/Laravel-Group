@@ -17,8 +17,8 @@ Login account admin
 
 Login account user
 
-    email: user1@deha-soft.com
-    password: 123456
+    email: user@deha-soft.com
+    password: 12345678
 
 ## Run Project
 Form Register
