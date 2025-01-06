@@ -7,7 +7,9 @@ Vũ Văn Toán
 ## Getting Started
 
     git clone https://github.com/Tung-Pro/Laravel-Group.git
+    git clone https://github.com/Laradock/laradock.git
     cd laradock
+    cp .env.example .env
     docker-compose up -d nginx
 
 Login account admin
