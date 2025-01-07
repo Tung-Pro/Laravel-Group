@@ -17,6 +17,13 @@
                 </a>
             </div>
 
+            <form action="{{ route('categories.index') }}" method="GET" class="mt-3">
+                <div class="input-group">
+                    <input type="text" name="search" class="form-control" placeholder="Search categories" value="{{ request()->input('search') }}">
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-search"></i> Search</button>
+                </div>
+            </form>
+
             <table class="table table-bordered table-striped mt-4">
                 <thead>
                 <tr>

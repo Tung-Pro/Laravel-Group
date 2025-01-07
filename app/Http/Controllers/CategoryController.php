@@ -29,9 +29,10 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $categories = Category::latest()->paginate(5);
+        $searchTerm = $request->input('search');
+        $categories = Category::searchByName($searchTerm)->latest()->paginate(5);
 
         return view('categories.index', compact('categories'))
             ->with('i', (request()->input('page', 1) - 1) * 5);

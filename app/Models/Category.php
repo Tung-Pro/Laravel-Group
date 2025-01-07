@@ -10,4 +10,14 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function scopeSearchByName($query, $searchTerm)
+    {
+        if (!empty($searchTerm)) {
+            return $query->where('name', 'like', '%' . $searchTerm . '%');
+        }
+
+        return $query;
+    }
+
 }
