@@ -2,8 +2,6 @@
 
 Nguyễn Văn Tùng
 
-Vũ Văn Toán
-
 ## Getting Started
 
     git clone https://github.com/Tung-Pro/Laravel-Group.git
